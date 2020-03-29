@@ -48,12 +48,6 @@ if (isset($_GET['delete'])) {
 }
 ?>
 
-<button id="btnAddTask" type="button" onclick="showAddTask()" class="btn-sm btn-success efecto-abajo">
-    Add Task
-</button>
-<br>
-<br>
-
 <?php
 $username = $_SESSION['SESION'][0]['username'];
 $sql = "SELECT * FROM `task` WHERE `user_assigned` LIKE '$username' ";
@@ -63,7 +57,13 @@ if($db->db_sql($sql) != null){ ?>
     <div class="table-responsive">
     <table class="table table-striped table-light efecto-arriba text-xs-center">
     <thead>
-    <th colspan="12">My Tasks</th>
+    <th colspan="8">My tasks</th>
+    <th colspan="4">
+        <button id="btnAddTask" type="button" onclick="showAddTask()" class="btn-sm btn-success efecto-abajo">
+            Add task
+        </button>
+    </th>
+    
     <tr>
         <th scope="col">ID</th>
         <th scope="col">Assigned</th>
@@ -167,7 +167,7 @@ if($db->db_sql($sql) != null){ ?>
                                 </div>
                                 <strong style="color:rgb(38, 146, 216);">Description</strong>
                                 <div>
-                                    <textarea name="description" id="description" maxlength="500" required><?php echo $task['description']; ?></textarea>
+                                    <textarea name="description" id="description" maxlength="1000" required><?php echo $task['description']; ?></textarea>
                                 </div>
                             </div>
                             <button id="btnEditTaskModal" name="btnEditTaskModal" type="submit" class="btn-sm btn-info centrado">
@@ -196,6 +196,9 @@ if($db->db_sql($sql) != null){ ?>
 
     <div class="alert alert-success efecto-abajo" style="font-family: Times; font-size: 22px">
         Backlog empty...
+        <button id="btnAddTask" type="button" onclick="showAddTask()" class="btn-sm btn-success efecto-abajo">
+            Add task
+        </button>
     </div>
 
 <?php 
@@ -208,7 +211,7 @@ if($db->db_sql($sql) != null){ ?>
         
     <div id="divAddTask" class="col-sm-10 float-left shadow-lg p-3 mb-5 efecto-derecha cajita" style="display:none;margin-bottom: 25px;">
     <form id="sendTaskForm" action="home.php" method="post">
-    <h1>Add Task</h1>
+    <h1>Add task</h1>
     <hr>
     <div class="row">
         <div class="form-row col-sm-4" style="margin-bottom: 25px;">
